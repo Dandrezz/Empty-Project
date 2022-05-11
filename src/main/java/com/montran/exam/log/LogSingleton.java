@@ -73,11 +73,9 @@ public class LogSingleton {
 						logger = new LogSingleton();
 					} catch (FileNotFoundException | UnsupportedEncodingException e) {
 						System.err.println("Error creating singleton LogSingleton");
-					} catch (LogException logException) {
-						throw new LogException("properties is missing", logException);
 					}
 			}
-		return logger;
+		return null;
 	}
 
 	/**

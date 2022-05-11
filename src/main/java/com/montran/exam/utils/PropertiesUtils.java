@@ -28,7 +28,6 @@ public class PropertiesUtils {
 		try {
 			prop.load(input);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			throw new PropertiesReaderException("file not found: " + filename);
 		}
 		return prop;

@@ -23,7 +23,7 @@ import com.montran.exam.utils.PropertiesUtils;
  * @author Diego Portero
  *
  */
-public class XmlPersistence<T extends Archivable> implements PersistenceStrategy<T> {
+public class JsonPersistence<T extends Archivable> implements PersistenceStrategy<T> {
 
 	/**
 	 * Path to the xml to persit and open
@@ -45,7 +45,10 @@ public class XmlPersistence<T extends Archivable> implements PersistenceStrategy
 	 * 
 	 * @throws PersistenceException
 	 */
-	public XmlPersistence() throws PersistenceException {
+	public JsonPersistence() throws PersistenceException {
+		// change property for json persistence
+		System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
+
 		Properties props;
 		try {
 			props = PropertiesUtils.loadPropertiesFile("persistence.properties");
@@ -53,10 +56,10 @@ public class XmlPersistence<T extends Archivable> implements PersistenceStrategy
 			throw new PersistenceException("properties is missing");
 		}
 		if (key.length() == 0)
-			this.path = props.getProperty("persistence.xml.path");
+			this.path = props.getProperty("persistence.json.path");
 		else
 			this.path = props.getProperty(key);
-		String contextProperty = props.getProperty("persistence.xml.context");
+		String contextProperty = props.getProperty("persistence.json.context");
 		String[] contextClassNames = contextProperty.split(",");
 		context = new Class[contextClassNames.length];
 		for (int i = 0; i < contextClassNames.length; i++) {
@@ -73,15 +76,18 @@ public class XmlPersistence<T extends Archivable> implements PersistenceStrategy
 	 */
 	@Override
 	public void save(T objectToBePersisted) throws PersistenceException {
+		// TODO Auto-generated method stub
 		JAXBContext context;
 		Marshaller marshaller;
 		try {
-			context = JAXBContext.newInstance(this.context); 
+			context = JAXBContext.newInstance(this.context);
 			marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+			marshaller.setProperty("eclipselink.media-type", "application/json");
 			marshaller.marshal(objectToBePersisted, new FileWriter(path));
 		} catch (JAXBException jaxbException) {
-			throw new PersistenceException("Object cant be converted to xml", jaxbException);
+			throw new PersistenceException("Object cant be converted to json", jaxbException);
 		} catch (IOException ioException) {
 			throw new PersistenceException("file cant be written to path " + this.path, ioException);
 		}
@@ -93,11 +99,13 @@ public class XmlPersistence<T extends Archivable> implements PersistenceStrategy
 	@SuppressWarnings("unchecked")
 	@Override
 	public T load() throws PersistenceException {
+		// TODO Auto-generated method stub
 		JAXBContext context;
 		Unmarshaller unmarshaller;
 		try {
 			context = JAXBContext.newInstance(this.context);
 			unmarshaller = context.createUnmarshaller();
+			unmarshaller.setProperty("eclipselink.media-type", "application/json");
 			File fileToBeRead = new File(path);
 			if (!fileToBeRead.exists()) {
 				throw new FileNotFoundException(path + " does not exist");
@@ -107,6 +115,7 @@ public class XmlPersistence<T extends Archivable> implements PersistenceStrategy
 		} catch (JAXBException jaxbException) {
 			throw new PersistenceException("xml cant be loaded", jaxbException);
 		} catch (FileNotFoundException fileNotFoundException) {
+			// TODO Auto-generated catch block
 			throw new PersistenceException("xml file doesnt exist", fileNotFoundException);
 		}
 	}
