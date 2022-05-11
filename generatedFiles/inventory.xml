@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<inventory>
+    <categories>
+        <descriptionOfCategory>Skills with cars</descriptionOfCategory>
+        <nameOfCategory>Cars</nameOfCategory>
+    </categories>
+    <skills>
+        <knowledgeRating>0</knowledgeRating>
+        <skillDescription>Mechanic skills</skillDescription>
+        <skillName>Mechanic</skillName>
+    </skills>
+</inventory>
