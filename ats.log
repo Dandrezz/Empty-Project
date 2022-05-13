@@ -1,0 +1,73 @@
+2022-05-12|16:18:05.893|ERROR|hola
+2022-05-12|18:26:46.212|ERROR|Unregistered participant
+2022-05-12|18:43:12.179|ERROR|Persist error
+2022-05-12|18:43:12.195|ERROR|Unregistered participant
+2022-05-12|18:44:25.302|ERROR|Persist error
+2022-05-12|18:44:25.321|ERROR|Unregistered participant
+2022-05-12|18:45:21.833|ERROR|Persist error
+2022-05-12|18:45:21.849|ERROR|Unregistered participant
+2022-05-12|18:45:51.400|ERROR|Persist error
+2022-05-12|18:45:51.415|ERROR|Unregistered participant
+2022-05-12|18:48:24.197|ERROR|Unregistered participant
+2022-05-12|18:53:14.305|ERROR|Unregistered participant
+2022-05-12|18:55:37.345|ERROR|Unregistered participant
+2022-05-12|18:57:41.359|ERROR|Unregistered participant
+2022-05-12|19:27:29.778|ERROR|Unregistered participant
+2022-05-12|19:27:29.794|ERROR|Unregistered participant
+2022-05-12|19:30:53.843|ERROR|Unregistered participant
+2022-05-12|19:36:38.753|ERROR|Unregistered participant
+2022-05-12|19:38:30.916|ERROR|Unregistered participant
+2022-05-12|19:39:25.420|INFO|Succesful transaction
+2022-05-12|19:41:09.666|INFO|Succesful transaction
+2022-05-12|19:42:16.881|INFO|Succesful transaction
+2022-05-12|20:00:47.507|INFO|Succesful transaction
+2022-05-12|20:00:47.657|ERROR|Format invalid
+2022-05-12|20:00:47.658|ERROR|Failed to execute ACH
+2022-05-12|20:08:19.485|INFO|Succesful transaction
+2022-05-12|20:08:19.730|ERROR|Format invalid
+2022-05-12|20:08:19.730|ERROR|Failed to execute ACH
+2022-05-12|20:08:26.758|INFO|Succesful transaction
+2022-05-12|20:08:26.976|ERROR|Format invalid
+2022-05-12|20:08:26.976|ERROR|Failed to execute ACH
+2022-05-12|20:08:36.633|INFO|Succesful transaction
+2022-05-12|20:08:36.762|ERROR|Format invalid
+2022-05-12|20:08:36.763|ERROR|Failed to execute ACH
+2022-05-12|20:08:48.471|INFO|Succesful transaction
+2022-05-12|20:09:02.965|INFO|Succesful transaction
+2022-05-12|20:09:44.384|INFO|Succesful transaction
+2022-05-12|20:10:20.974|INFO|Succesful transaction
+2022-05-12|20:11:46.023|INFO|Succesful transaction
+2022-05-12|20:12:04.575|INFO|Succesful transaction
+2022-05-12|20:12:30.351|INFO|Succesful transaction
+2022-05-12|20:12:30.485|ERROR|Format invalid
+2022-05-12|20:12:30.485|ERROR|Failed to execute ACH
+2022-05-12|20:12:52.185|INFO|Succesful transaction
+2022-05-12|20:12:54.781|ERROR|Format invalid
+2022-05-12|20:12:54.781|ERROR|Failed to execute ACH
+2022-05-12|20:13:03.171|INFO|Succesful transaction
+2022-05-12|20:13:12.052|INFO|Succesful transaction
+2022-05-12|20:13:22.881|INFO|Succesful transaction
+2022-05-12|20:13:34.384|INFO|Succesful transaction
+2022-05-12|20:14:06.722|INFO|Succesful transaction
+2022-05-12|20:15:00.840|INFO|Succesful transaction
+2022-05-12|20:15:27.881|INFO|Succesful transaction
+2022-05-12|20:15:36.094|INFO|Succesful transaction
+2022-05-12|20:16:49.743|INFO|Succesful transaction
+2022-05-12|20:17:09.803|INFO|Succesful transaction
+2022-05-12|20:17:27.160|INFO|Succesful transaction
+2022-05-12|20:17:40.517|INFO|Succesful transaction
+2022-05-12|20:17:43.025|INFO|Succesful transaction
+2022-05-12|20:28:52.736|INFO|Succesful transaction
+2022-05-12|20:28:52.922|ERROR|Unregistered participant
+2022-05-12|20:28:52.922|ERROR|Unregistered participant
+2022-05-12|20:28:52.923|ERROR|Failed to execute ACH
+2022-05-12|20:29:00.997|INFO|Succesful transaction
+2022-05-12|20:29:12.927|ERROR|Unregistered participant
+2022-05-12|20:29:19.172|INFO|Succesful transaction
+2022-05-12|20:29:38.777|ERROR|Unregistered participant
+2022-05-12|20:29:47.862|INFO|Succesful transaction
+2022-05-12|20:30:26.296|INFO|Succesful transaction
+2022-05-12|20:30:56.830|INFO|Succesful transaction
+2022-05-12|20:36:22.105|INFO|Succesful transaction
+2022-05-12|20:37:01.929|INFO|Succesful transaction
+2022-05-12|20:38:18.420|INFO|Succesful transaction

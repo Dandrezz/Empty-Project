@@ -1,30 +1,22 @@
-/**
- * 
- */
 package com.montran.exam.account;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
-/**
- * 
- * @author Diego Portero
- *
- */
 public abstract class BaseAccount {
 
 	/**
 	 * Account identifier
 	 */
-	private String idAccount;
-	/**
-	 * Name to be assigned to the account
-	 */
-	private String nameAccount;
+	private int idAccount;
 	/**
 	 * Account owner
 	 */
-	private String ownerAccount;
+	private int ownerAcount;
+	/**
+	 * Type currency
+	 */
+	private String currency;
 	/**
 	 * Initial balance with which the account is created
 	 */
@@ -34,24 +26,25 @@ public abstract class BaseAccount {
 	 */
 	private BigDecimal currentBalance;
 	
-	//	getters and setters
-	public String getIdAccount() {
+	// getters and setters
+	
+	public int getIdAccount() {
 		return idAccount;
 	}
-	public void setIdAccount(String idAccount) {
+	public void setIdAccount(int idAccount) {
 		this.idAccount = idAccount;
 	}
-	public String getNameAccount() {
-		return nameAccount;
+	public int getOwnerAcount() {
+		return ownerAcount;
 	}
-	public void setNameAccount(String nameAccount) {
-		this.nameAccount = nameAccount;
+	public void setOwnerAcount(int ownerAcount) {
+		this.ownerAcount = ownerAcount;
 	}
-	public String getOwnerAccount() {
-		return ownerAccount;
+	public String getCurrency() {
+		return currency;
 	}
-	public void setOwnerAccount(String ownerAccount) {
-		this.ownerAccount = ownerAccount;
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 	public BigDecimal getInitialBalance() {
 		return initialBalance;
@@ -67,12 +60,12 @@ public abstract class BaseAccount {
 	}
 	@Override
 	public String toString() {
-		return "BaseAccount [idAccount=" + idAccount + ", nameAccount=" + nameAccount + ", ownerAccount=" + ownerAccount
+		return "BaseAccount [idAccount=" + idAccount + ", ownerAcount=" + ownerAcount + ", currency=" + currency
 				+ ", initialBalance=" + initialBalance + ", currentBalance=" + currentBalance + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(currentBalance, idAccount, initialBalance, nameAccount, ownerAccount);
+		return Objects.hash(idAccount);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -83,9 +76,7 @@ public abstract class BaseAccount {
 		if (getClass() != obj.getClass())
 			return false;
 		BaseAccount other = (BaseAccount) obj;
-		return Objects.equals(currentBalance, other.currentBalance) && Objects.equals(idAccount, other.idAccount)
-				&& Objects.equals(initialBalance, other.initialBalance)
-				&& Objects.equals(nameAccount, other.nameAccount) && Objects.equals(ownerAccount, other.ownerAccount);
+		return idAccount == other.idAccount;
 	}
-
+	
 }

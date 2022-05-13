@@ -1,12 +1,11 @@
 package com.montran.exam.log;
 
 /**
- * Enum for levels of log
- * 
+ * the levels that the log has
  * @author Diego Portero
  *
  */
-public enum LogLevel {
-	INFO, 
+public enum LogLevels {
+	INFO,
 	ERROR
 }

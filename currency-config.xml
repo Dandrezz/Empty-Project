@@ -1,0 +1,14 @@
+<currencies>
+	<currency>
+		<code>USD</code>
+		<fractionDigits>2</fractionDigits>
+	</currency>
+	<currency>
+		<code>BTC</code>
+		<fractionDigits>8</fractionDigits>
+	</currency>
+	<currency>
+		<code>PEN</code>
+		<fractionDigits>2</fractionDigits>
+	</currency>
+</currencies>
