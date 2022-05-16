@@ -1,5 +1,10 @@
 package com.montran.exam.exceptions;
 
+/**
+ * Class to manage the exception of transaction
+ * @author Diego Portero
+ *
+ */
 public class TransactionException extends Exception {
 
 	/**

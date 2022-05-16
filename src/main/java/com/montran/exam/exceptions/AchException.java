@@ -1,6 +1,8 @@
 package com.montran.exam.exceptions;
 
 /**
+ * Class to manage the exception of persistence
+ * 
  * @author Diego Portero
  *
  */

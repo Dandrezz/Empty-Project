@@ -6,18 +6,11 @@ import com.montran.exam.ach.AchManager;
 import com.montran.exam.exceptions.AchException;
 import com.montran.exam.exceptions.ParticipantException;
 import com.montran.exam.exceptions.PersistenceException;
-<<<<<<< HEAD
 import com.montran.exam.exceptions.RTGSException;
 import com.montran.exam.log.Log;
 import com.montran.exam.log.LogLevels;
 import com.montran.exam.participant.ParticipantDTO;
 import com.montran.exam.participant.manager.ParticipantManger;
-=======
-import com.montran.exam.log.Log;
-import com.montran.exam.log.LogLevels;
-import com.montran.exam.persistence.PersistenceStrategy;
-import com.montran.exam.persistence.impl.JsonPersistence;
->>>>>>> 24dff98f02ed980131ea3fafac8f3e55f0b1cb84
 import com.montran.exam.persistence.impl.XmlPersistence;
 import com.montran.exam.rtgs.RtgsManager;
 
@@ -60,8 +53,9 @@ public class Demo {
 		
 		try {
 			ParticipantManger.getInstance().saveParticipant(new XmlPersistence<ParticipantDTO>());
-		} catch (ParticipantException | PersistenceException e1) {
-			e1.printStackTrace();
+		} catch (PersistenceException e) {
+			log.write("Persist error", Demo.class , LogLevels.ERROR);
+		} catch (ParticipantException e) {
 			log.write("Persist error", Demo.class , LogLevels.ERROR);
 		}
 		System.out.println("--------");

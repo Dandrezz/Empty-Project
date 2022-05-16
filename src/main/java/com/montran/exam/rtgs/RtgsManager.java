@@ -18,6 +18,10 @@ import com.montran.exam.transaction.TransactionRtgs;
 import com.montran.exam.utils.FileReaderUtil;
 import com.montran.exam.utils.UUIDGenerator;
 
+/**
+ * @author Diego Portero
+ *
+ */
 public class RtgsManager {
 
 	private Log log = Log.getInstance();
@@ -110,6 +114,7 @@ public class RtgsManager {
 			
 			participantA = participantManger.findParticipantByCodeSwitf(codeSwiftA);
 			participantB = participantManger.findParticipantByCodeSwitf(codeSwiftB);
+			
 		} catch (ParticipantException e) {
 			Log.getInstance().write(e.getMessage(), getClass(), LogLevels.ERROR);
 			return;

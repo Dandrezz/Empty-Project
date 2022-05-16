@@ -1,5 +1,11 @@
 package com.montran.exam.exceptions;
 
+/**
+ * Class to manage the exception of RTGS transaction
+ * 
+ * @author Diego Portero
+ *
+ */
 public class RTGSException extends Exception {
 
 	/**

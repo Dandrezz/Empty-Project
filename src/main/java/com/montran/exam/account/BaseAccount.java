@@ -3,6 +3,11 @@ package com.montran.exam.account;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+/**
+ * This class is an abstract class that contains the common values that an account  will have in the system
+ * @author Diego Portero
+ *
+ */
 public abstract class BaseAccount {
 
 	/**

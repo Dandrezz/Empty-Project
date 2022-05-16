@@ -1,5 +1,10 @@
 package com.montran.exam.exceptions;
 
+/**
+ * Class to manage the exception of file reader util
+ * @author Diego Portero
+ *
+ */
 public class FileReaderUtilException extends Exception {
 
 	/**

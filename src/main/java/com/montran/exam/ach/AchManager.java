@@ -19,6 +19,7 @@ import com.montran.exam.transaction.TransactionRtgs;
 import com.montran.exam.utils.FileReaderUtil;
 
 /**
+ * This class is used to manage ACH transactions logic
  * @author Diego Portero
  *
  */

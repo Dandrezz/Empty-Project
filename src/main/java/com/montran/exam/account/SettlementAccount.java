@@ -2,6 +2,11 @@ package com.montran.exam.account;
 
 import com.montran.exam.persistence.Archivable;
 
+/**
+ * This class represents the information necessary to create a suspense account
+ * @author Diego Portero
+ *
+ */
 public class SettlementAccount extends BaseAccount implements Archivable {
 
 	/**
@@ -33,5 +38,16 @@ public class SettlementAccount extends BaseAccount implements Archivable {
 	public void setNumberOfCredits(int numberOfCredits) {
 		this.numberOfCredits = numberOfCredits;
 	}
+
+	@Override
+	public String toString() {
+		return "SettlementAccount [numberOfDebits=" + numberOfDebits + ", numberOfCredits=" + numberOfCredits
+				+ ", getIdAccount()=" + getIdAccount() + ", getOwnerAcount()=" + getOwnerAcount() + ", getCurrency()="
+				+ getCurrency() + ", getInitialBalance()=" + getInitialBalance() + ", getCurrentBalance()="
+				+ getCurrentBalance() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode()
+				+ ", getClass()=" + getClass() + "]";
+	}
+	
+	
 	
 }
