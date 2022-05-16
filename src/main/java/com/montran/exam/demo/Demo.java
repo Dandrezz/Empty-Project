@@ -32,7 +32,6 @@ public class Demo {
 		
 		Log log = Log.getInstance();
 		
-<<<<<<< HEAD
 		
 		ParticipantManger.getInstance().createParticipant("Banco Pichicha", "Pichin", "diego@pichincha.fin.ec", "0999261556", "PICHECEQ");
 		ParticipantManger.getInstance().createParticipant("Banco de Guayaquil", "Guay", "daniel@guayaquil.fin.ec", "0999261557", "GUAYECEG");
@@ -76,28 +75,6 @@ public class Demo {
 		} catch (ParticipantException e) {
 			log.write("Failed to execute ACH", Demo.class , LogLevels.ERROR);
 		}
-=======
-		log.write("Account cannot be deleted", Demo.class, LogLevels.ERROR);
-		System.out.println("Termino ejecucion");
-		
-//		try {
-//			Account accountTest = new Account();
-//			accountTest.setIdAccount("test");
-//			accountTest.setNameAccount("testAccount");
-//			accountTest.setOwnerAccount("testOwner");
-//			accountTest.setInitialBalance(BigDecimal.ONE);
-//			accountTest.setCurrentBalance(BigDecimal.TEN);
-//			accountTest.setStatus(Status.ACTIVE);
-//			PersistenceStrategy<Account> xml = new JsonPersistence<Account>();
-//			xml.save(accountTest);
-//			
-////			Account accountSecond = xml.load();
-////			System.out.println(accountSecond);
-//		} catch (PersistenceException e) {
-//			e.printStackTrace();
-//		}
-		
->>>>>>> 24dff98f02ed980131ea3fafac8f3e55f0b1cb84
 
 	}
 
