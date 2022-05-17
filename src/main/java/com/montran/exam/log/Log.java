@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.time.LocalDateTime;
+import com.montran.exam.exceptions.LogException;
 
 
 /**
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
  *
  */
 public class Log {
+	
 	/**
 	 * Instance of this class
 	 */
@@ -29,23 +31,22 @@ public class Log {
 	
 	/**
 	 * Singleton constructor that creates a file named from a properties file
+	 * @throws LogException 
 	 */
-	private Log() {
+	private Log() throws LogException {
 		try {
 			fileOutputStream = new FileOutputStream("ats.log",true);			
 			writer = new OutputStreamWriter(fileOutputStream);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			throw new LogException(e.getMessage(),e);
 		}
 	}
 	
 	/**
 	 * Write a message to the existing file
 	 * @param message Message that will be written in the file
-	 * @param clazz Name of the class that is writing to the log file
 	 */
-	@SuppressWarnings("rawtypes")
-	public void write(String message, Class clazz, LogLevels logLevel) {
+	public void write(String message, LogLevels logLevel) {
 		try {
 			writer.append(LocalDateTime.now().toString().replace("T", "|") + "|" + logLevel.toString() + "|"  + message+"\n");
 			writer.flush();
@@ -56,8 +57,9 @@ public class Log {
 	/**
 	 * Get the instance of this class
 	 * @return the unique instance of the class
+	 * @throws LogException 
 	 */
-	public static Log getInstance() {
+	public static Log getInstance() throws LogException {
 		if(instance ==null) {
 			synchronized(Log.class) {
 				if(instance ==null) {

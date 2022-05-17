@@ -15,17 +15,18 @@ import org.xml.sax.SAXException;
 
 import com.montran.exam.currency.Currency;
 import com.montran.exam.exceptions.CurrencyException;
+import com.montran.exam.exceptions.LogException;
 import com.montran.exam.log.Log;
 import com.montran.exam.log.LogLevels;
 
 /**
  * This class is used to manage objects of type Currency
+ * 
  * @author Diego Portero
  *
  */
 public class CurrencyManager {
-	
-	private Log log = Log.getInstance();
+
 	/**
 	 * Instance of this class
 	 */
@@ -33,14 +34,17 @@ public class CurrencyManager {
 	/**
 	 * Map to store different types of currencies
 	 */
-	private Map<String,Currency> currencies;
+	private Map<String, Currency> currencies;
 
 	/**
-	 * Constructor without parameters
-	 * Currency data is loaded
+	 * Constructor without parameters Currency data is loaded
+	 * @throws LogException 
 	 */
-	private CurrencyManager() throws CurrencyException {
-		currencies = new HashMap<String,Currency>();
+	private Log log;
+	
+	private CurrencyManager() throws CurrencyException, LogException {
+		log = Log.getInstance();
+		currencies = new HashMap<String, Currency>();
 		File file = new File("currency-config.xml");
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
@@ -55,31 +59,34 @@ public class CurrencyManager {
 				currencies.put(auxCurrent.getCode(), auxCurrent);
 			}
 		} catch (ParserConfigurationException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
-			throw new CurrencyException(e.getMessage(),e);
+			log.write(e.getMessage(), LogLevels.ERROR);
+			throw new CurrencyException(e.getMessage(), e);
 		} catch (SAXException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
-			throw new CurrencyException(e.getMessage(),e);
+			log.write(e.getMessage(), LogLevels.ERROR);
+			throw new CurrencyException(e.getMessage(), e);
 		} catch (IOException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
-			throw new CurrencyException(e.getMessage(),e);
+			log.write(e.getMessage(), LogLevels.ERROR);
+			throw new CurrencyException(e.getMessage(), e);
 		}
 	}
 
 	/**
 	 * This method to get data about currencies
+	 * 
 	 * @return a map containing the currency data
 	 */
-	public Map<String,Currency> getInfoCurrencies() {
+	public Map<String, Currency> getInfoCurrencies() {
 		return currencies;
 	}
 
 	/**
 	 * This method to get a instance of singleton
+	 * 
 	 * @return a single instance of the class
 	 * @throws CurrencyException
+	 * @throws LogException 
 	 */
-	public static CurrencyManager getInstance() throws CurrencyException {
+	public static CurrencyManager getInstance() throws CurrencyException, LogException {
 		if (instance == null) {
 			synchronized (CurrencyManager.class) {
 				if (instance == null) {

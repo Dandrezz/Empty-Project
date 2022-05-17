@@ -25,6 +25,7 @@ public class Participant extends BaseParticipant {
 	private Map<String,SettlementAccount> settlementAccounts;
 
 	// getters and setters
+	
 	public Map<String, SettlementAccount> getSettlementAccounts() {
 		return settlementAccounts;
 	}

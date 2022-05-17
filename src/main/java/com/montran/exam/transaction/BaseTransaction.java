@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Diego Portero
  *
  */
-public abstract class BasicTransaction {
+public abstract class BaseTransaction {
 
 	/**
 	 * Transaction identifier
@@ -92,7 +92,7 @@ public abstract class BasicTransaction {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BasicTransaction other = (BasicTransaction) obj;
+		BaseTransaction other = (BaseTransaction) obj;
 		return idTransaction == other.idTransaction;
 	}
 	

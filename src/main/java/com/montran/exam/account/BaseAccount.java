@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * This class is an abstract class that contains the common values that an account  will have in the system
+ * This class is an abstract class that contains the common values that an
+ * account will have in the system
+ * 
  * @author Diego Portero
  *
  */
@@ -30,48 +32,60 @@ public abstract class BaseAccount {
 	 * Current balance
 	 */
 	private BigDecimal currentBalance;
-	
+
 	// getters and setters
-	
+
 	public int getIdAccount() {
 		return idAccount;
 	}
+
 	public void setIdAccount(int idAccount) {
 		this.idAccount = idAccount;
 	}
+
 	public int getOwnerAcount() {
 		return ownerAcount;
 	}
+
 	public void setOwnerAcount(int ownerAcount) {
 		this.ownerAcount = ownerAcount;
 	}
+
 	public String getCurrency() {
 		return currency;
 	}
+
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
+
 	public BigDecimal getInitialBalance() {
 		return initialBalance;
 	}
+
 	public void setInitialBalance(BigDecimal initialBalance) {
 		this.initialBalance = initialBalance;
 	}
+
 	public BigDecimal getCurrentBalance() {
 		return currentBalance;
 	}
+
 	public void setCurrentBalance(BigDecimal currentBalance) {
 		this.currentBalance = currentBalance;
 	}
+
 	@Override
 	public String toString() {
 		return "BaseAccount [idAccount=" + idAccount + ", ownerAcount=" + ownerAcount + ", currency=" + currency
 				+ ", initialBalance=" + initialBalance + ", currentBalance=" + currentBalance + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(idAccount);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,5 +97,5 @@ public abstract class BaseAccount {
 		BaseAccount other = (BaseAccount) obj;
 		return idAccount == other.idAccount;
 	}
-	
+
 }

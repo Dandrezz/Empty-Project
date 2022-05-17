@@ -9,7 +9,9 @@ import com.montran.exam.persistence.Archivable;
 import com.montran.exam.status.ParticipantStatus;
 
 /**
- * This class is an abstract class that contains the common values that a participant will have in the system.
+ * This class is an abstract class that contains the common values that a
+ * participant will have in the system.
+ * 
  * @author Diego Portero
  *
  */
@@ -44,7 +46,7 @@ public abstract class BaseParticipant implements Archivable {
 	 * SWIFT code
 	 */
 	private String switfCode;
-	
+
 	/**
 	 * Current participant status
 	 */
@@ -98,7 +100,7 @@ public abstract class BaseParticipant implements Archivable {
 	public void setCellPhoneNumber(String cellPhoneNumber) {
 		this.cellPhoneNumber = cellPhoneNumber;
 	}
-	
+
 	public ParticipantStatus getStatus() {
 		return status;
 	}

@@ -2,7 +2,6 @@ package com.montran.exam.ach;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,12 +9,12 @@ import java.util.Map;
 
 import com.montran.exam.exceptions.AchException;
 import com.montran.exam.exceptions.FileReaderUtilException;
+import com.montran.exam.exceptions.LogException;
 import com.montran.exam.exceptions.ParticipantException;
 import com.montran.exam.log.Log;
 import com.montran.exam.log.LogLevels;
 import com.montran.exam.participant.manager.ParticipantManger;
-import com.montran.exam.transaction.TransacionAch;
-import com.montran.exam.transaction.TransactionRtgs;
+import com.montran.exam.transaction.impl.TransacionAch;
 import com.montran.exam.utils.FileReaderUtil;
 
 /**
@@ -25,7 +24,7 @@ import com.montran.exam.utils.FileReaderUtil;
  */
 public class AchManager {
 
-	private Log log = Log.getInstance();
+	private Log log;
 
 	private static AchManager instance;
 
@@ -34,16 +33,18 @@ public class AchManager {
 	 */
 	private List<TransacionAch> transactions;
 	
-	public AchManager() {
+	private AchManager() throws LogException {
 		transactions = new ArrayList<TransacionAch>();
+		log = Log.getInstance();
 	}
 
 	/**
 	 * Get the instance of this class
 	 * 
 	 * @return the unique instance of the class
+	 * @throws LogException 
 	 */
-	public static AchManager getInstance() {
+	public static AchManager getInstance() throws LogException {
 		if (instance == null) {
 			synchronized (AchManager.class) {
 				if (instance == null) {
@@ -60,8 +61,9 @@ public class AchManager {
 	 * 
 	 * @return a String with the content of the file
 	 * @throws FileReaderUtilException
+	 * @throws LogException 
 	 */
-	public String readFileACH() throws FileReaderUtilException {
+	public String readFileACH() throws FileReaderUtilException, LogException {
 		return FileReaderUtil.getInstance().readFile("ach_file.txt");
 	}
 
@@ -70,18 +72,19 @@ public class AchManager {
 	 * 
 	 * @return
 	 * @throws AchException
+	 * @throws LogException 
 	 */
-	public String[] parsinData() throws AchException {
+	public String[] parsinData() throws AchException, LogException {
 		String data;
 		try {
 			data = readFileACH();
 		} catch (FileReaderUtilException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
+			log.write(e.getMessage(), LogLevels.ERROR);
 			throw new AchException(e.getMessage(), e);
 		}
 		String[] lines = data.split("\n");
 		if (lines.length < 1) {
-			log.write("Format invalid", getClass(), LogLevels.ERROR);
+			log.write("Format invalid", LogLevels.ERROR);
 			throw new AchException("Format invalid");
 		}
 		for (int i = 1; i < lines.length; i++) {
@@ -101,7 +104,7 @@ public class AchManager {
 		return div.length == 5;
 	}
 
-	public void transactionProcessing() throws AchException {
+	public void transactionProcessing() throws AchException, LogException {
 		try {
 			String lines[] = parsinData();
 			String[] header = lines[0].split("\\|");
@@ -136,10 +139,10 @@ public class AchManager {
 			transactions.add(transacionAch);
 			
 		} catch (AchException e) {
-			log.write("Format invalid", getClass(), LogLevels.ERROR);
+			log.write("Format invalid", LogLevels.ERROR);
 			throw new AchException("Error in the parsin", e);
 		} catch (ParticipantException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
+			log.write(e.getMessage(), LogLevels.ERROR);
 			throw new AchException(e.getMessage(), e);
 		}
 	}

@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.montran.exam.persistence.Archivable;
 
 /**
+ * Class
  * 
  * @author Diego Portero
  *

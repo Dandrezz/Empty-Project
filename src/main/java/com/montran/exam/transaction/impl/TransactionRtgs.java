@@ -1,15 +1,16 @@
-package com.montran.exam.transaction;
+package com.montran.exam.transaction.impl;
 
 import java.time.LocalDate;
 
 import com.montran.exam.status.TransactionStatus;
+import com.montran.exam.transaction.BaseTransaction;
 
 /**
  * This class contains the necessary values to create a new transaction of type RTGS
  * @author Diego Portero
  *
  */
-public class TransactionRtgs extends BasicTransaction {
+public class TransactionRtgs extends BaseTransaction {
 	
 	/**
 	 * Timestamp the transaction was changed its status

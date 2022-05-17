@@ -4,6 +4,7 @@ import com.montran.exam.persistence.Archivable;
 
 /**
  * This class represents the information necessary to create a suspense account
+ * 
  * @author Diego Portero
  *
  */
@@ -47,7 +48,5 @@ public class SettlementAccount extends BaseAccount implements Archivable {
 				+ getCurrentBalance() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode()
 				+ ", getClass()=" + getClass() + "]";
 	}
-	
-	
-	
+
 }

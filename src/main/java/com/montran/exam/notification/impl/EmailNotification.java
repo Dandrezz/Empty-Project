@@ -1,6 +1,6 @@
-package com.montran.exam.notifaction.impl;
+package com.montran.exam.notification.impl;
 
-import com.montran.exam.notifaction.BaseNotification;
+import com.montran.exam.notification.NotificationStrategy;
 
 /**
  * This class is the implementation for strategy to notification via email
@@ -8,7 +8,7 @@ import com.montran.exam.notifaction.BaseNotification;
  * @author Diego Portero
  *
  */
-public class EmailNotification implements BaseNotification {
+public class EmailNotification implements NotificationStrategy {
 
 	/**
 	 *This method will send a notification via email

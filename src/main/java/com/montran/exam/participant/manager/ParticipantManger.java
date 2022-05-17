@@ -9,6 +9,7 @@ import com.montran.exam.account.manager.impl.AccountManager;
 import com.montran.exam.currency.Currency;
 import com.montran.exam.currency.manager.CurrencyManager;
 import com.montran.exam.exceptions.CurrencyException;
+import com.montran.exam.exceptions.LogException;
 import com.montran.exam.exceptions.ParticipantException;
 import com.montran.exam.exceptions.PersistenceException;
 import com.montran.exam.log.Log;
@@ -28,14 +29,15 @@ public class ParticipantManger {
 	 * Map to stores the participants
 	 */
 	private Map<Integer, Participant> participants;
-	private Log log = Log.getInstance();
+	private Log log;
 	
 	/**
 	 * Get the instance of this class This method is Thread Safety
 	 * 
 	 * @return the unique instance of the class
+	 * @throws LogException 
 	 */
-	public static ParticipantManger getInstance() {
+	public static ParticipantManger getInstance() throws LogException {
 		if (instance == null) {
 			synchronized (ParticipantManger.class) {
 				if (instance == null) {
@@ -48,9 +50,11 @@ public class ParticipantManger {
 
 	/**
 	 * Constructor without parameters
+	 * @throws LogException 
 	 */
-	public ParticipantManger() {
+	public ParticipantManger() throws LogException {
 		participants = new HashMap<Integer, Participant>();
+		log = Log.getInstance();
 	}
 
 	/**
@@ -64,9 +68,11 @@ public class ParticipantManger {
 	 * @param switfCode
 	 * 
 	 * @return a new instantiated object of type participant
+	 * @throws LogException 
+	 * @throws CurrencyException 
 	 */
 	public Participant createParticipant(String fullNameParticipant, String shortNameParticipant,
-			String emailParticipant, String cellPhoneNumber, String switfCode) {
+			String emailParticipant, String cellPhoneNumber, String switfCode) throws LogException, CurrencyException {
 
 		Participant newParticipant = new Participant();
 		newParticipant.setIdParticipant(UUIDGenerator.getInstance().getUuid32bits());
@@ -86,7 +92,8 @@ public class ParticipantManger {
 				settlementAccounts.put(currency.getCode(), newSettlementAccount);
 			}
 		} catch (CurrencyException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
+			log.write(e.getMessage(), LogLevels.ERROR);
+			throw new CurrencyException(e.getMessage(),e);
 		}
 		newParticipant.setSettlementAccounts(settlementAccounts);
 		participants.put(newParticipant.getIdParticipant(), newParticipant);
@@ -146,7 +153,7 @@ public class ParticipantManger {
 		try {
 			balanceAccounts(findParticipantByCodeSwitf(codeSwiftA),findParticipantByCodeSwitf(codeSwiftB),currency,amount);
 		} catch (ParticipantException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
+			log.write(e.getMessage(), LogLevels.ERROR);
 			throw new ParticipantException(e.getLocalizedMessage(),e);
 		}
 		
@@ -168,7 +175,7 @@ public class ParticipantManger {
 			settlementAccountSearch.setInitialBalance(initialBalance);
 			settlementAccountSearch.setCurrentBalance(currentBalance);
 		} catch (ParticipantException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
+			log.write(e.getMessage(), LogLevels.ERROR);
 			throw new ParticipantException(e.getMessage(),e);
 		}
 	}
@@ -185,7 +192,7 @@ public class ParticipantManger {
 			SettlementAccount settlementAccountSearch = participantSearch.getSettlementAccounts().get(currency);
 			System.out.println(settlementAccountSearch);
 		} catch (ParticipantException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
+			log.write(e.getMessage(), LogLevels.ERROR);
 			throw new ParticipantException(e.getMessage(),e);
 		}
 	}
@@ -198,7 +205,7 @@ public class ParticipantManger {
 		try {
 			persistenceStrategy.save(participantDTO);
 		} catch (PersistenceException e) {
-			log.write(e.getMessage(), getClass(), LogLevels.ERROR);
+			log.write(e.getMessage(), LogLevels.ERROR);
 			throw new ParticipantException(e.getMessage(),e);
 		}
 	}
