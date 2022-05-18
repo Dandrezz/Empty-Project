@@ -13,12 +13,12 @@ public interface PersistenceStrategy<T extends Archivable> {
 	 * Method to persist an objetc
 	 * @param objectToBePersisted
 	 */
-	public void save(T objectToBePersisted) throws PersistenceException;
+	public void save(T objectToBePersisted, String fileName) throws PersistenceException;
 
 	/**
 	 * Method to open a persisted object 
 	 * @return object
 	 */
-	public T load() throws PersistenceException;
+	public T load(String fileName) throws PersistenceException;
 
 }

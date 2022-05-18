@@ -5,7 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.montran.exam.account.manager.impl.AccountManager;
+import com.montran.exam.exceptions.LogException;
+import com.montran.exam.exceptions.ParticipantException;
+import com.montran.exam.exceptions.PersistenceException;
+import com.montran.exam.exceptions.TransactionException;
+import com.montran.exam.log.Log;
+import com.montran.exam.log.LogLevels;
+import com.montran.exam.persistence.Archivable;
+import com.montran.exam.persistence.PersistenceFactory;
+import com.montran.exam.persistence.PersistenceStrategy;
 import com.montran.exam.transaction.BaseTransaction;
+import com.montran.exam.transaction.TransactionsDTO;
 import com.montran.exam.transaction.impl.TransacionAch;
 import com.montran.exam.transaction.impl.TransactionRtgs;
 import com.montran.exam.utils.UUIDGenerator;
@@ -17,6 +27,8 @@ import com.montran.exam.utils.UUIDGenerator;
  *
  */
 public class TransactionManager {
+	
+	private Log log;
 	
 	private List<BaseTransaction> transactions;
 	
@@ -80,4 +92,16 @@ public class TransactionManager {
 		return newTransaction;
 	}
 
+	public void saveTransaction() throws LogException, PersistenceException, TransactionException {
+		PersistenceStrategy<Archivable> persistence = PersistenceFactory.getInstance().buildPersistenceStrategy();
+		TransactionsDTO transactionsDTO = new TransactionsDTO(transactions);
+		try {
+			persistence.save(transactionsDTO, "transactions");
+			log.write("Save transactions", LogLevels.INFO);
+		} catch (PersistenceException e) {
+			log.write(e.getMessage(), LogLevels.ERROR);
+			throw new TransactionException(e.getMessage(),e);
+		}
+	}
+	
 }

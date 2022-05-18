@@ -8,13 +8,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.montran.exam.persistence.Archivable;
 
 /**
- * Class
+ * Class that helps to parse list of participants
  * 
  * @author Diego Portero
  *
  */
 @XmlRootElement
-public class ParticipantDTO implements Archivable{
+public class ParticipantsDTO implements Archivable{
 	/**
 	 * Serializable ID
 	 */
@@ -24,11 +24,12 @@ public class ParticipantDTO implements Archivable{
 	 */
 	private List<Participant> participants;
 	
-	public ParticipantDTO() {
+	public ParticipantsDTO() {
 		participants = new ArrayList<Participant>();
 	}
 
 	// getters and setters
+	
 	public List<Participant> getParticipants() {
 		return participants;
 	}
@@ -36,7 +37,5 @@ public class ParticipantDTO implements Archivable{
 	public void setParticipants(List<Participant> participants) {
 		this.participants = participants;
 	}
-	
-	
 	
 }

@@ -5,10 +5,13 @@ import com.montran.exam.exceptions.CurrencyException;
 import com.montran.exam.exceptions.LogException;
 import com.montran.exam.exceptions.NotificationException;
 import com.montran.exam.exceptions.ParserException;
+import com.montran.exam.exceptions.ParticipantException;
 import com.montran.exam.exceptions.PersistenceException;
 import com.montran.exam.exceptions.RTGSException;
+import com.montran.exam.exceptions.TransactionException;
 import com.montran.exam.participant.manager.ParticipantManger;
 import com.montran.exam.rtgs.RtgsManager;
+import com.montran.exam.transaction.manager.TransactionManager;
 
 /**
  * This class manage all ATS system and represents a Manager of the API
@@ -21,6 +24,7 @@ public class AtsManager {
 	private RtgsManager rtgsManager;
 	private AchManager achManager;
 	private ParticipantManger participantManger;
+	private TransactionManager transactionManager;
 
 	private static AtsManager instance;
 
@@ -38,6 +42,7 @@ public class AtsManager {
 		rtgsManager = RtgsManager.getInstance();
 		achManager = AchManager.getInstance();
 		participantManger = ParticipantManger.getInstance();
+		transactionManager = TransactionManager.getInstance();
 	}
 
 	public static AtsManager getInstance()
@@ -64,6 +69,14 @@ public class AtsManager {
 			String cellPhoneNumber, String switfCode) throws LogException, CurrencyException {
 		participantManger.createParticipant(fullNameParticipant, shortNameParticipant, emailParticipant,
 				cellPhoneNumber, switfCode);
+	}
+	
+	public void saveParticipants() throws ParticipantException, LogException, PersistenceException {
+		participantManger.saveParticipant();
+	}
+	
+	public void saveTransactions() throws LogException, PersistenceException, TransactionException {
+		transactionManager.saveTransaction();
 	}
 
 }

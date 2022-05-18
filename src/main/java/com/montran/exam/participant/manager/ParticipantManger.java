@@ -1,8 +1,12 @@
 package com.montran.exam.participant.manager;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.eclipse.persistence.jpa.rs.PersistenceFactoryBase;
 
 import com.montran.exam.account.SettlementAccount;
 import com.montran.exam.account.manager.impl.AccountManager;
@@ -15,7 +19,9 @@ import com.montran.exam.exceptions.PersistenceException;
 import com.montran.exam.log.Log;
 import com.montran.exam.log.LogLevels;
 import com.montran.exam.participant.Participant;
-import com.montran.exam.participant.ParticipantDTO;
+import com.montran.exam.participant.ParticipantsDTO;
+import com.montran.exam.persistence.Archivable;
+import com.montran.exam.persistence.PersistenceFactory;
 import com.montran.exam.persistence.PersistenceStrategy;
 import com.montran.exam.status.ParticipantStatus;
 import com.montran.exam.utils.UUIDGenerator;
@@ -197,13 +203,14 @@ public class ParticipantManger {
 		}
 	}
 	
-	public void saveParticipant(PersistenceStrategy<ParticipantDTO> persistenceStrategy) throws ParticipantException {
-		ParticipantDTO participantDTO = new ParticipantDTO();
-		for (Participant partipantAux : participants.values()) {
-			participantDTO.getParticipants().add(partipantAux);
-		}
+	public void saveParticipant() throws ParticipantException, LogException, PersistenceException {
+		PersistenceStrategy<Archivable> persistence = PersistenceFactory.getInstance().buildPersistenceStrategy();
+		ParticipantsDTO participantDTO = new ParticipantsDTO();
+		List<Participant> partipantAux = new ArrayList<Participant>(participants.values());
+		participantDTO.setParticipants(partipantAux);
 		try {
-			persistenceStrategy.save(participantDTO);
+			persistence.save(participantDTO, "participants");
+			log.write("Save participants", LogLevels.INFO);
 		} catch (PersistenceException e) {
 			log.write(e.getMessage(), LogLevels.ERROR);
 			throw new ParticipantException(e.getMessage(),e);

@@ -96,3 +96,16 @@
 2022-05-17|18:35:40.221|ERROR|Unregistered participant
 2022-05-17|19:03:57.540|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
 2022-05-17|19:03:57.688|INFO|Succesful transaction 1460424307
+2022-05-18|15:56:22.369|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-18|15:56:22.715|INFO|Succesful transaction 1204569560
+2022-05-18|15:56:40.980|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-18|15:56:41.491|INFO|Succesful transaction 813387436
+2022-05-18|15:56:57.271|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-18|15:56:57.620|INFO|Succesful transaction 1589922929
+2022-05-18|17:03:05.546|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-18|17:03:05.916|INFO|Succesful transaction 929252727
+2022-05-18|17:03:05.917|INFO|Perist context: class com.montran.exam.persistence.impl.XmlPersistence
+2022-05-18|17:04:02.709|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-18|17:04:03.093|INFO|Succesful transaction 1387416443
+2022-05-18|17:04:03.095|INFO|Perist context: class com.montran.exam.persistence.impl.XmlPersistence
+2022-05-18|17:04:03.246|INFO|Save participants

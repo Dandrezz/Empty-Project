@@ -5,8 +5,10 @@ import com.montran.exam.exceptions.CurrencyException;
 import com.montran.exam.exceptions.LogException;
 import com.montran.exam.exceptions.NotificationException;
 import com.montran.exam.exceptions.ParserException;
+import com.montran.exam.exceptions.ParticipantException;
 import com.montran.exam.exceptions.PersistenceException;
 import com.montran.exam.exceptions.RTGSException;
+import com.montran.exam.exceptions.TransactionException;
 
 /**
  * @author Diego Portero
@@ -18,13 +20,15 @@ public class Demo {
 	public static void main(String[] args) {
 
 		try {
-			
+			System.out.println("Start");
 			AtsManager ats = AtsManager.getInstance();
 			ats.createParticipant("Banco Pichicha", "Pichin", "diego@pichincha.fin.ec", "0999261556", "PICHECEQ");
 			ats.createParticipant("Banco de Guayaquil", "Guay", "daniel@guayaquil.fin.ec", "0999261557", "GUAYECEG");
 			ats.createParticipant("Bancho Produbanco", "Produ", "paul@produbanco.fin.ec", "0999261558", "PRODECEQ");
 			ats.executeRtgs();
-			
+			ats.saveParticipants();
+			ats.saveTransactions();
+			System.out.println("End");
 		} catch (LogException e) {
 			e.printStackTrace();
 		} catch (ParserException e) {
@@ -36,6 +40,10 @@ public class Demo {
 		} catch (RTGSException e) {
 			e.printStackTrace();
 		} catch (CurrencyException e) {
+			e.printStackTrace();
+		} catch (ParticipantException e) {
+			e.printStackTrace();
+		} catch (TransactionException e) {
 			e.printStackTrace();
 		}
 		

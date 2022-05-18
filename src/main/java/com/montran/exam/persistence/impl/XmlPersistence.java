@@ -72,14 +72,14 @@ public class XmlPersistence<T extends Archivable> implements PersistenceStrategy
 	 * Method to persist an object in xml
 	 */
 	@Override
-	public void save(T objectToBePersisted) throws PersistenceException {
+	public void save(T objectToBePersisted, String fileName) throws PersistenceException {
 		JAXBContext context;
 		Marshaller marshaller;
 		try {
-			context = JAXBContext.newInstance(this.context); 
+			context = JAXBContext.newInstance(this.context);
 			marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(objectToBePersisted, new FileWriter(path));
+			marshaller.marshal(objectToBePersisted, new FileWriter(String.join(File.separator, path, fileName+".xml")));
 		} catch (JAXBException jaxbException) {
 			throw new PersistenceException("Object cant be converted to xml", jaxbException);
 		} catch (IOException ioException) {
@@ -92,13 +92,13 @@ public class XmlPersistence<T extends Archivable> implements PersistenceStrategy
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public T load() throws PersistenceException {
+	public T load(String fileName) throws PersistenceException {
 		JAXBContext context;
 		Unmarshaller unmarshaller;
 		try {
 			context = JAXBContext.newInstance(this.context);
 			unmarshaller = context.createUnmarshaller();
-			File fileToBeRead = new File(path);
+			File fileToBeRead = new File(String.join(File.separator, path, fileName));
 			if (!fileToBeRead.exists()) {
 				throw new FileNotFoundException(path + " does not exist");
 			}
