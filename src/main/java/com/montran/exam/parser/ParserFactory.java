@@ -44,14 +44,14 @@ public class ParserFactory {
 			log.write("failed with reading properties " + e.getMessage(),LogLevels.ERROR);
 			throw new ParserException("failed with reading properties", e);
 		}
-		String key = parserProperties.getProperty("parser.name");
+		String key = parserProperties.getProperty("parser.format");
 		if (key == null) {
 			log.write("Parser key not found, using default",LogLevels.INFO);
 			key = "com.montran.exam.parser.impl.ParserIso";
 		}
-		if(parsersCache.containsKey(key)) {
+		if(!parsersCache.containsKey(key)) {
 			synchronized (parsersCache) {
-				if(parsersCache.containsKey(key)) {
+				if(!parsersCache.containsKey(key)) {
 					Class<?> clazz;
 					try {
 						clazz = Class.forName(key);

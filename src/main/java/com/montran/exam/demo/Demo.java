@@ -1,21 +1,12 @@
 package com.montran.exam.demo;
 
-import java.math.BigDecimal;
-
-import com.montran.exam.ach.AchManager;
-import com.montran.exam.exceptions.AchException;
+import com.montran.exam.ats.AtsManager;
 import com.montran.exam.exceptions.CurrencyException;
 import com.montran.exam.exceptions.LogException;
-import com.montran.exam.exceptions.ParticipantException;
+import com.montran.exam.exceptions.NotificationException;
+import com.montran.exam.exceptions.ParserException;
 import com.montran.exam.exceptions.PersistenceException;
 import com.montran.exam.exceptions.RTGSException;
-import com.montran.exam.log.Log;
-import com.montran.exam.log.LogLevels;
-import com.montran.exam.parser.ParserFactory;
-import com.montran.exam.participant.ParticipantDTO;
-import com.montran.exam.participant.manager.ParticipantManger;
-import com.montran.exam.persistence.impl.XmlPersistence;
-import com.montran.exam.rtgs.RtgsManager;
 
 /**
  * @author Diego Portero
@@ -25,9 +16,31 @@ import com.montran.exam.rtgs.RtgsManager;
 public class Demo {
 
 	public static void main(String[] args) {
+
+		try {
+			
+			AtsManager ats = AtsManager.getInstance();
+			ats.createParticipant("Banco Pichicha", "Pichin", "diego@pichincha.fin.ec", "0999261556", "PICHECEQ");
+			ats.createParticipant("Banco de Guayaquil", "Guay", "daniel@guayaquil.fin.ec", "0999261557", "GUAYECEG");
+			ats.createParticipant("Bancho Produbanco", "Produ", "paul@produbanco.fin.ec", "0999261558", "PRODECEQ");
+			ats.executeRtgs();
+			
+		} catch (LogException e) {
+			e.printStackTrace();
+		} catch (ParserException e) {
+			e.printStackTrace();
+		} catch (NotificationException e) {
+			e.printStackTrace();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		} catch (RTGSException e) {
+			e.printStackTrace();
+		} catch (CurrencyException e) {
+			e.printStackTrace();
+		}
 		
 		
-		
+
 //		Log log = null;
 //		try {
 //			log = Log.getInstance();

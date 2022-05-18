@@ -1,5 +1,7 @@
-/com/
-/parser.properties
-/rtgs.properties
 /ach.properties
+/com/
+/log.properties
 /notification.properties
+/parser.properties
+/persistence.properties
+/rtgs.properties

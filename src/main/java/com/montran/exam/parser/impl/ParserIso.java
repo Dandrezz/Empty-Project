@@ -10,14 +10,18 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.montran.exam.exceptions.LogException;
+import com.montran.exam.exceptions.ParserException;
+import com.montran.exam.exceptions.PropertiesReaderException;
 import com.montran.exam.log.Log;
 import com.montran.exam.log.LogLevels;
 import com.montran.exam.parser.ParserStrategy;
 import com.montran.exam.parser.formats.FormatRtgs;
+import com.montran.exam.utils.PropertiesUtils;
 
 public class ParserIso implements ParserStrategy<FormatRtgs> {
 
@@ -25,9 +29,17 @@ public class ParserIso implements ParserStrategy<FormatRtgs> {
 	private List<String> lines;
 	private String path;
 
-	public ParserIso() throws LogException {
+	public ParserIso() throws LogException, ParserException {
 		log = Log.getInstance();
 		lines = new ArrayList<String>();
+		Properties props;
+		try {
+			props = PropertiesUtils.loadPropertiesFile("parser.properties");
+		} catch (PropertiesReaderException e) {
+			log.write("Properties is missing: " + e.getMessage(),LogLevels.ERROR);
+			throw new ParserException("properties is missing", e);
+		}
+		this.path = props.getProperty("parser.data.rtgs.loadfile.path");
 	}
 
 	@Override

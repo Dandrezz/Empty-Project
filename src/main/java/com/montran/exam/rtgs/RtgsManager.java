@@ -7,6 +7,7 @@ import java.util.Properties;
 import com.montran.exam.exceptions.LogException;
 import com.montran.exam.exceptions.NotificationException;
 import com.montran.exam.exceptions.ParserException;
+import com.montran.exam.exceptions.ParticipantException;
 import com.montran.exam.exceptions.PersistenceException;
 import com.montran.exam.exceptions.PropertiesReaderException;
 import com.montran.exam.exceptions.RTGSException;
@@ -17,6 +18,7 @@ import com.montran.exam.notification.NotificationStrategy;
 import com.montran.exam.parser.ParserFactory;
 import com.montran.exam.parser.ParserStrategy;
 import com.montran.exam.parser.formats.FormatRtgs;
+import com.montran.exam.participant.Participant;
 import com.montran.exam.participant.manager.ParticipantManger;
 import com.montran.exam.persistence.Archivable;
 import com.montran.exam.persistence.PersistenceStrategy;
@@ -58,13 +60,8 @@ public class RtgsManager {
 		log = Log.getInstance();
 		participantManger = ParticipantManger.getInstance();
 		transactionManager = TransactionManager.getInstance();
-		try {
-			rtgsProperties = PropertiesUtils.loadPropertiesFile("rtgs.properties");
-		} catch (PropertiesReaderException e) {
-			log.write(e.getMessage(), LogLevels.ERROR);
-		}
 		persist = new XmlPersistence<Archivable>();
-		parser = ParserFactory.getInstance().buildParserStrategy(rtgsProperties.getProperty("parser.format"));
+		parser = ParserFactory.getInstance().buildParserStrategy("rtgs.properties");
 		notification = NotificationFactory.getInstance().buildNotificationStrategy();
 	}
 
@@ -89,6 +86,9 @@ public class RtgsManager {
 		return instance;
 	}
 
+	/**
+	 * 
+	 */
 	public void executeTransactions() {
 		parser.loadFile();
 		List<FormatRtgs> listsFormat = parser.processFile();
@@ -102,6 +102,8 @@ public class RtgsManager {
 				log.write(e.getMessage(), LogLevels.ERROR);
 			} catch (LogException e) {
 				log.write(e.getMessage(), LogLevels.ERROR);
+			} catch (ParticipantException e) {
+				log.write(e.getMessage(), LogLevels.ERROR);
 			}
 		}
 	}
@@ -111,8 +113,14 @@ public class RtgsManager {
 	 * 
 	 * @throws RTGSException
 	 * @throws LogException
+	 * @throws ParticipantException
 	 */
-	public void transactionProcessing(TransactionRtgs transactionRtgs) throws RTGSException, LogException {
+	public void transactionProcessing(TransactionRtgs transactionRtgs)
+			throws RTGSException, LogException, ParticipantException {
+
+		participantManger.balanceAccounts(transactionRtgs.getSwiftCodeSenderParticipant(),
+				transactionRtgs.getSwiftCodeReceiverParticipant(), transactionRtgs.getCurrency(),
+				transactionRtgs.getAmount());
 
 		log.write("Succesful transaction " + transactionRtgs.getIdTransaction(), LogLevels.INFO);
 	}

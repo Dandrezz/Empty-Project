@@ -34,7 +34,7 @@ public class NotificationFactory {
 	public NotificationStrategy buildNotificationStrategy() throws NotificationException {
 		Properties notificationProperties = null;
 		try {
-			notificationProperties = PropertiesUtils.loadPropertiesFile("notifications.properties");
+			notificationProperties = PropertiesUtils.loadPropertiesFile("notification.properties");
 		} catch (PropertiesReaderException e) {
 			log.write("failed with reading properties " + e.getMessage(),LogLevels.ERROR);
 			throw new NotificationException("Failed with reading properties", e);

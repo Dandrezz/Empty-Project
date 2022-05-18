@@ -11,10 +11,13 @@ import com.montran.exam.exceptions.AchException;
 import com.montran.exam.exceptions.FileReaderUtilException;
 import com.montran.exam.exceptions.LogException;
 import com.montran.exam.exceptions.ParticipantException;
+import com.montran.exam.exceptions.RTGSException;
 import com.montran.exam.log.Log;
 import com.montran.exam.log.LogLevels;
+import com.montran.exam.parser.formats.FormatRtgs;
 import com.montran.exam.participant.manager.ParticipantManger;
 import com.montran.exam.transaction.impl.TransacionAch;
+import com.montran.exam.transaction.impl.TransactionRtgs;
 import com.montran.exam.utils.FileReaderUtil;
 
 /**
@@ -53,6 +56,10 @@ public class AchManager {
 			}
 		}
 		return instance;
+	}
+	
+	public void executeTransactions() {
+		
 	}
 
 	/**

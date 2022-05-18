@@ -71,3 +71,28 @@
 2022-05-12|20:36:22.105|INFO|Succesful transaction
 2022-05-12|20:37:01.929|INFO|Succesful transaction
 2022-05-12|20:38:18.420|INFO|Succesful transaction
+2022-05-17|18:13:39.516|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso20022
+2022-05-17|18:13:47.083|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso20022
+2022-05-17|18:13:58.164|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso20022
+2022-05-17|18:14:05.738|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso20022
+2022-05-17|18:14:17.228|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso20022
+2022-05-17|18:15:21.985|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso20022
+2022-05-17|18:16:35.605|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso20022
+2022-05-17|18:19:19.972|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:20:03.507|ERROR|failed with reading properties file not found: com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:24:23.154|INFO|Parser key not found, using default
+2022-05-17|18:24:23.156|ERROR|failed with reading properties file not found: notifications.properties
+2022-05-17|18:24:46.463|INFO|Parser key not found, using default
+2022-05-17|18:25:35.938|INFO|Parser key not found, using default
+2022-05-17|18:27:24.140|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:27:53.577|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:28:31.805|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:32:47.256|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:35:17.001|ERROR|C:\data\rtgs_file.txt (The system cannot find the file specified)
+2022-05-17|18:35:22.526|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:35:22.529|ERROR|C:\data\rtgs_file.txt (The system cannot find the file specified)
+2022-05-17|18:35:40.094|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-17|18:35:40.221|ERROR|Unregistered participant
+2022-05-17|18:35:40.221|ERROR|Unregistered participant
+2022-05-17|19:03:57.540|INFO|Parser context: class com.montran.exam.parser.impl.ParserIso
+2022-05-17|19:03:57.688|INFO|Succesful transaction 1460424307
